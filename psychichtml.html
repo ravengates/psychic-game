@@ -7,13 +7,14 @@
     <title>Psychic Game</title>
 </head>
 <body>
-
+<div id="psychicGame">
     <h1> Psychic Game</h1>
     <p> Guess what letter I'm thinking of</p>
     <p> Wins: </p>
     <p> Losses: </p>
     <p>Guesses Left:</p>
     <p> Your Guesses so far:</p>
+    </div>
 
 <!--Computer Makes a choice-->
 <!---User Makes a choice-->
@@ -27,7 +28,8 @@
 var computerChoices = ["t", "z", "s", "p", "m", "w", "f", "q", "r"];
 var wins = 0;
 var losses = 0;
-var GuessesLeft = 0;
+var GuessesLeft = 9;
+var guessesSoFar = [];
 
 //an alert anytime user presses something on the keyboard.
 //capture what user is actually pressing
@@ -35,6 +37,7 @@ var GuessesLeft = 0;
 document.onkeyup =function() {
     var userguess = String.fromCharCode(event.keyCode).
     toLowerCase();
+guessesSoFar.push(userguess);
 
 //create random index of computer array
 var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
@@ -42,6 +45,7 @@ var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.l
 console.log(computerGuess);
 
 //compare to win or loss.
+//create code that keeps track of the wins and losses.
 
 if (userguess == computerGuess) {
     wins ++;
@@ -51,11 +55,23 @@ if (userguess == computerGuess) {
     alert("Losses: " + losses);
 }
 
+
+
+
+
+// create html interface that records losses and wins
+
+var html = "<h1> Psychic Game </h1> " +
+"<p> Guess what letter I'm thinking of</p>" +
+    "<p> Wins: " + wins + "</p>" +
+    "<p> Losses: " + losses + "</p>" +
+    "<p>Guesses Left: " + (GuessesLeft + -1) + "</p>" +
+    "<p> Your Guesses so far: " + guessesSoFar.join(',') + "</p>";
+
+    document.querySelector('#psychicGame').innerHTML = html;
+
+
 }
-
-//create code that keeps track of the wins and losses.
-
-
 
 </script>
 
