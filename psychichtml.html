@@ -24,14 +24,38 @@
 <script type="text/javascript">
 
 //array of options for the computer
-var options = ["t", "z", "s", "p", "m", "w", "f", "q", "r"]
+var computerChoices = ["t", "z", "s", "p", "m", "w", "f", "q", "r"];
+var wins = 0;
+var losses = 0;
+var GuessesLeft = 0;
 
 //an alert anytime user presses something on the keyboard.
 //capture what user is actually pressing
+
 document.onkeyup =function() {
     var userguess = String.fromCharCode(event.keyCode).
     toLowerCase();
+
+//create random index of computer array
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+console.log(computerGuess);
+
+//compare to win or loss.
+
+if (userguess == computerGuess) {
+    wins ++;
+    alert("Wins: " + wins);
+} else {
+    losses ++;
+    alert("Losses: " + losses);
 }
+
+}
+
+//create code that keeps track of the wins and losses.
+
+
 
 </script>
 
